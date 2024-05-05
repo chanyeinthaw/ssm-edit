@@ -1,15 +1,14 @@
 # ssm-env
 
-To install dependencies:
+AWS SSM ParameterStore UI **SUCKS**! I made this to ease my pain. 
+
+# AWS credentials
+
+You need to configure aws credentials @ `~/.aws/credentials` or set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in env vars.
+
+# Runing 
 
 ```bash
 bun install
+bun dev --help
 ```
-
-To run:
-
-```bash
-bun run src/index.ts
-```
-
-This project was created using `bun init` in bun v1.0.30. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
