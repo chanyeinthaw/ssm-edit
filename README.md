@@ -12,3 +12,5 @@ You need to configure aws credentials @ `~/.aws/credentials` or set `AWS_ACCESS_
 bun install
 bun dev --help
 ```
+
+> You need `vim` by the way!
