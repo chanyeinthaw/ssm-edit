@@ -139,7 +139,7 @@ export class VimCommand
 
       const effects: Array<Effect.Effect<void, CommandError, SSM>> = []
 
-      effects.push(self.deleteParams(delParamNames))
+      effects.push(self.deleteParams(delParamNames.map(name => name.replace('sec:', ''))))
 
       for (const name of newAndUpdateNames) {
         const type = name.startsWith('sec:')
