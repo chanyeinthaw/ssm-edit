@@ -1,11 +1,24 @@
 {
-  "name": "ssm-env",
-  "module": "src/index.ts",
+  "name": "ssm-edit",
+  "version": "0.0.0",
+  "main": "bin.js",
+  "bin": {
+    "ssme": "bin.js"
+  },
   "type": "module",
   "scripts": {
     "dev": "bun run src/index.ts",
-    "build": "bun build src/index.ts --compile --outfile ssnv"
+    "build": "bun build src/index.ts --target node --outfile=dist/index.js --minify",
+    "build:compile": "bun build src/index.ts --compile --outfile ssnv"
   },
+  "keywords": [
+    "cli",
+    "ssm",
+    "aws",
+    "parameter-store"
+  ],
+  "author": "Chan Nyein Thaw",
+  "license": "MIT",
   "devDependencies": {
     "@types/bun": "latest",
     "prettier": "^3.2.5",
@@ -21,5 +34,8 @@
     "configparser": "^0.3.10",
     "effect": "^3.1.2",
     "yesno": "^0.4.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
