@@ -1,4 +1,4 @@
-# ssm-env
+# ssm-edit
 
 AWS SSM ParameterStore UI **SUCKS**! I made this to ease my pain. 
 
