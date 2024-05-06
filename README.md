@@ -6,11 +6,16 @@ AWS SSM ParameterStore UI **SUCKS**! I made this to ease my pain.
 
 You need to configure aws credentials @ `~/.aws/credentials` or set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in env vars.
 
+# Installation
+
+```bash
+bun add -g ssme
+```
+
 # Runing 
 
 ```bash
-bun install
-bun dev --help
+ssme --help
 ```
 
 > You need `vim` by the way!
