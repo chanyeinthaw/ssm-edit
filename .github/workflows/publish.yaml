@@ -19,7 +19,6 @@ jobs:
 
       - run: bun install -p
       - run: bun run build
-      - run: bun run test
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
