@@ -1,15 +1,13 @@
 name: npm-publish
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   my-job:
     name: publish
     runs-on: ubuntu-latest
     steps:
-      # ...
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v2
         with:
