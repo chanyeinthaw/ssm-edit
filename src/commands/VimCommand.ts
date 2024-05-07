@@ -7,6 +7,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import yesno from 'yesno'
+import child_process from 'node:child_process'
 import { SSM } from '../ssm/SSM'
 import type { CatCommandOutput } from './CatCommand'
 import type { Command } from './Command'
@@ -41,17 +42,13 @@ export class VimCommand
         `envs-${new Date().toISOString()}.txt`,
       )
 
-      await Bun.write(tempFilePath, content)
+      fs.writeFileSync(tempFilePath, content)
 
-      const vim = Bun.spawn(['vim', tempFilePath], {
-        stdin: 'inherit',
-        stdout: 'inherit',
-        stderr: 'inherit',
+      child_process.spawnSync('vim', [tempFilePath], {
+        stdio: 'inherit',
       })
 
-      await vim.exited
-
-      const results = await Bun.file(tempFilePath).text()
+      const results = fs.readFileSync(tempFilePath, 'utf-8').toString()
 
       fs.unlinkSync(tempFilePath)
 
