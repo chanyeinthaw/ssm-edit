@@ -1,4 +1,4 @@
-import { BunRuntime } from '@effect/platform-bun'
+import { NodeRuntime } from '@effect/platform-node'
 import { Console, Effect, Layer } from 'effect'
 import { CatCommand } from './commands/CatCommand'
 import type { Command } from './commands/Command'
@@ -43,4 +43,4 @@ const program = Effect.gen(function* () {
 
 const layer = Layer.mergeAll(Arg.Live, Credentials.Live, Config.Live, SSM.Live)
 
-BunRuntime.runMain(Effect.provide(program, layer))
+Effect.provide(program, layer).pipe(NodeRuntime.runMain)

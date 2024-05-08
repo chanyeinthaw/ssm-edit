@@ -3,11 +3,11 @@ import {
   PutParameterCommand,
 } from '@aws-sdk/client-ssm'
 import { Console, Effect, Record } from 'effect'
+import child_process from 'node:child_process'
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import yesno from 'yesno'
-import child_process from 'node:child_process'
 import { SSM } from '../ssm/SSM'
 import type { CatCommandOutput } from './CatCommand'
 import type { Command } from './Command'
@@ -136,7 +136,11 @@ export class VimCommand
 
       const effects: Array<Effect.Effect<void, CommandError, SSM>> = []
 
-      effects.push(self.deleteParams(delParamNames.map(name => name.replace('sec:', ''))))
+      effects.push(
+        self.deleteParams(
+          delParamNames.map((name) => name.replace('sec:', '')),
+        ),
+      )
 
       for (const name of newAndUpdateNames) {
         const type = name.startsWith('sec:')
