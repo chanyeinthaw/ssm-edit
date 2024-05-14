@@ -1,11 +1,6 @@
 package parameter_store
 
-type ConfigLoader interface {
-	Load() interface{}
-}
-
 type ParameterStore interface {
-	Init(cfg ConfigLoader) error
 	DescribeParameters(options Options) ([]Parameter, error)
 	GetParameters(names []string) ([]ParameterWithValue, error)
 	DeleteParameters(names []string) error

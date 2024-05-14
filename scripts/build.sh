@@ -22,7 +22,7 @@ rm -rf ./bin/*
 for goos in $GOOS_LIST; do
   for goarch in $GOARCH_LIST; do
     echo "Building ssme for $goos-$goarch"
-    CGO_ENABLED=0 GOOS="$goos" GOARCH="$goarch" go build -ldflags="-s -w -X main.Version=$VERSION" -o "bin/ssme-${goos}-${goarch}" cmd/ssme/ssme.go
+    CGO_ENABLED=0 GOOS="$goos" GOARCH="$goarch" go build -ldflags="-s -w -X main.Version=$VERSION" -o "bin/ssme-${goos}-${goarch}" cmd/ssme/main.go
   done
 done
 

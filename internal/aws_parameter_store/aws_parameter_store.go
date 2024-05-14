@@ -14,22 +14,21 @@ type Store struct {
 	client *ssm.Client
 }
 
-func New() *Store {
-	return &Store{}
+type Config struct {
+	Region  *string
+	Profile *string
 }
 
-const GET_PARAMETERS_MAX_NAMES = 10
-
-func (s *Store) Init(c ps.ConfigLoader) error {
+func New(cfg Config) (*Store, error) {
+	store := &Store{}
 	optFns := make([]func(*config.LoadOptions) error, 0)
-	cfg := c.Load().(*Config)
 
-	if cfg.region != nil {
-		optFns = append(optFns, config.WithRegion(*cfg.region))
+	if cfg.Region != nil {
+		optFns = append(optFns, config.WithRegion(*cfg.Region))
 	}
 
-	if cfg.profile != nil {
-		optFns = append(optFns, config.WithSharedConfigProfile(*cfg.profile))
+	if cfg.Profile != nil {
+		optFns = append(optFns, config.WithSharedConfigProfile(*cfg.Profile))
 	}
 
 	awsConfig, err := config.LoadDefaultConfig(
@@ -38,13 +37,15 @@ func (s *Store) Init(c ps.ConfigLoader) error {
 	)
 
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	s.client = ssm.NewFromConfig(awsConfig)
+	store.client = ssm.NewFromConfig(awsConfig)
 
-	return nil
+	return store, nil
 }
+
+const GET_PARAMETERS_MAX_NAMES = 10
 
 func (s *Store) DescribeParameters(options ps.Options) ([]ps.Parameter, error) {
 	maxResults := int32(10)

@@ -15,7 +15,6 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-var config ps.ConfigLoader
 var store ps.ParameterStore
 
 func initStore(ctx *cli.Context) {
@@ -33,10 +32,13 @@ func initStore(ctx *cli.Context) {
 		regionPtr = &region
 	}
 
-	config = aws_parameter_store.NewConfig(regionPtr, profilePtr)
-	store = aws_parameter_store.New()
+	awsStore, err := aws_parameter_store.New(aws_parameter_store.Config{
+		Region:  regionPtr,
+		Profile: profilePtr,
+	})
 
-	err := store.Init(config)
+	store = awsStore
+
 	if err != nil {
 		fmt.Println("Error initializing store")
 		os.Exit(1)
