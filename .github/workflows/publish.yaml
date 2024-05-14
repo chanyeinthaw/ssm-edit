@@ -9,14 +9,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
       - uses: actions/setup-node@v2
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - uses: oven-sh/setup-bun@v1
-
-      - run: bun install -p
-      - run: bun run build
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: sh ./scripts/build.sh ${{ github.event.release.tag_name }}
+      # - run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
