@@ -35,6 +35,11 @@ cat << EOF > package.json
   "bin": {
     "ssme": "node/index.js"
   },
+  "description": "AWS SSM ParameterStore editor",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chanyeinthaw/ssme"
+  },
   "keywords": [
     "cli",
     "ssm",
