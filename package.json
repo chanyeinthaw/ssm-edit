@@ -1,15 +1,9 @@
 {
   "name": "ssme",
-  "version": "0.0.1",
-  "main": "bin.js",
+  "version": "0.0.2",
+  "main": "node/index.js",
   "bin": {
-    "ssme": "bin.js"
-  },
-  "type": "module",
-  "scripts": {
-    "dev": "bun run src/index.ts",
-    "build": "bun build src/index.ts --target node --outfile=dist/index.js --minify",
-    "build:compile": "bun build src/index.ts --compile --outfile ssnv"
+    "ssme": "node/index.js"
   },
   "keywords": [
     "cli",
@@ -19,23 +13,7 @@
   ],
   "author": "Chan Nyein Thaw",
   "license": "MIT",
-  "devDependencies": {
-    "@types/bun": "latest",
-    "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^3.2.4"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "@aws-sdk/client-ssm": "^3.569.0",
-    "@effect/platform-node": "^0.49.1",
-    "commander": "^12.0.0",
-    "configparser": "^0.3.10",
-    "effect": "^3.1.2",
-    "yesno": "^0.4.0"
-  },
   "files": [
-    "dist"
+    "bin"
   ]
 }
