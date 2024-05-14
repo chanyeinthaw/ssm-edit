@@ -17,18 +17,28 @@ npm install -g ssme
 ## Usage 
 
 ```bash
-$ ssme [options] [command]
+NAME:
+   ssme - AWS ParameterStore Editor
 
-Arguments:
-  command                         Command to run (choices: "ls", "cat", "vim", default: "ls")
+USAGE:
+   ssme [global options] command [command options]
 
-Options:
-  -e, --use-env                   Use credentials from environment variables
-  -m, --max-results <max-result>  Max results (default: 10)
-  -f, --prefix <prefix>           Prefix filter
-  -p, --profile <profile>         AWS Profile (default: "default")
-  -r, --region <region>           AWS Region
-  -h, --help                      display help for command
+VERSION:
+   dev
+
+COMMANDS:
+   ls, list   List parameters
+   cat        Display parameters with values
+   vim, edit  Edit parameters with vim
+   help, h    Shows a list of commands or help for one command
+
+GLOBAL OPTIONS:
+   --profile value, -p value      aws profile
+   --region value, -r value       aws region
+   --prefix value, -f value       prefix filter
+   --max-results value, -m value  max results (default: 10)
+   --help, -h                     show help
+   --version, -v                  print the version
 ```
 
 ### Commands
@@ -43,14 +53,14 @@ List parameters from parameter store.
 
 Usage
 ```
-$ ssme ls -r ap-southeast-1
+$ ssme ls 
 ```
 
 Example
 ```
 $ ssme ls -r ap-southeast-1
-String               /cdk-bootstrap/xxx/version
-SecureString         /acme/db
+String           /cdk-bootstrap/xxx/version
+SecureString     /acme/db
 ```
 
 ### `ssme cat`
@@ -59,12 +69,12 @@ Read parameters from parameter store.
 
 Usage
 ```
-$ ssme cat -r ap-southeast-1
+$ ssme cat
 ```
 
 Example
 ```
-$ ssme cat -r ap-southeast-1
+$ ssme -r ap-southeast-1 cat
 /cdk-bootstrap/xxx/version=1.2.3
 sec:/acme/db=mysql://root:password@db.acme.com/acme?sslaccept=strict&ssl={rejectUnauthorized:true}
 ```
@@ -77,12 +87,12 @@ Edit parameters from parameter store in vim
 
 Usage
 ```
-$ ssme vim -r ap-southeast-1
+$ ssme -r ap-southeast-1 vim
 ```
 
 Example
 ```
-$ ssme vim -r ap-southeast-1
+$ ssme -r ap-southeast-1 vim
 
 -- vim -- 
 /cdk-bootstrap/xxx/version=1.2.3
@@ -97,7 +107,6 @@ Updated ---
 /acme/db=mysql://root:password@db.acme.com/acme?sslaccept=strict&ssl={rejectUnauthorized:true}
 
 Do you want to apply these changes? (y/n)
-Saved: 1
 ```
 
 > You can change the parameter type by removing or adding `sec:` prefix
